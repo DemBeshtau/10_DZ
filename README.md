@@ -139,3 +139,82 @@ echo -en "$code_resp" | sort | uniq -c
 rm -f $LOCK
 exit 0
 ```
+2. Проверка работы скрипта:<br/>
+   Обрабатываемый диапазон выводится для демонстрации работы. Однако, данные выводятся на основании содержимого всего access-лога.<br/>
+   Причины указаны в описании скрипта (88-93 строки).
+```shell
+dem@calculate ~/vagrant/10_DZ $ ./parse_log.sh access-4560-644067.log 
+The processed range:
+|Wed May 15 18:13:51 MSK 2024| - |Wed May 15 19:13:51 MSK 2024|
+
+######## IP ########
+
+Num_req IP's
+---------------------------
+     45 93.158.167.130
+     39 109.236.252.130
+     37 212.57.117.19
+     33 188.43.241.106
+     31 87.250.233.68
+     24 62.75.198.172
+     22 148.251.223.21
+     20 185.6.8.9
+     17 217.118.66.161
+     16 95.165.18.146
+     12 95.108.181.93
+     12 62.210.252.196
+     12 185.142.236.35
+     12 162.243.13.195
+      8 163.179.32.118
+      7 87.250.233.75
+      6 167.99.14.153
+      6 165.22.19.102
+      5 71.6.199.23
+      5 5.45.203.12
+
+######## Resources ########
+
+Num_req Resources
+-----------------------------------------
+    157 /
+    120 /wp-login.php
+     57 /xmlrpc.php
+     26 /robots.txt
+     12 /favicon.ico
+     11 400
+      9 /wp-includes/js/wp-embed.min.js?ver=5.0.4
+      7 /wp-admin/admin-post.php?page=301bulkoptions
+      7 /1
+      6 /wp-content/uploads/2016/10/robo5.jpg
+      6 /wp-content/uploads/2016/10/robo4.jpg
+      6 /wp-content/uploads/2016/10/robo3.jpg
+      6 /wp-content/uploads/2016/10/robo2.jpg
+      6 /wp-content/uploads/2016/10/robo1.jpg
+      6 /wp-content/uploads/2016/10/aoc-1.jpg
+      6 /wp-content/uploads/2016/10/agreed.jpg
+      6 /wp-content/themes/llorix-one-lite/style.css?ver=1.0.0
+      6 /wp-admin/admin-ajax.php?page=301bulkoptions
+      5 /wp-includes/js/wp-emoji-release.min.js?ver=5.0.4
+      5 /wp-includes/css/dist/block-library/style.min.css?ver=5.0.4
+
+######## Server Errors ########
+
+Num_err Server_errors
+---------------------------
+      3 500
+
+######## Response Codes ########
+
+Num_rsp Response codes
+---------------------------
+    498 200
+     95 301
+      1 304
+      7 400
+      1 403
+     51 404
+      1 405
+      2 499
+      3 500
+
+```
