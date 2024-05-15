@@ -226,12 +226,12 @@ calculate dem # crontab -l
 SHELL=/bin/bash
 PATH=/bin:/sbin:/usr/bin:/usr/sbin
 
-*/2 * * * * parse_log /home/dem/vagrant/10_DZ/access-4560-644067.log | mutt -s report_"`date`" -- dimonkmv@yandex.ru
+*/2 * * * * parse_log /tmp/access-4560-644067.log | mutt -s report_"`date`" -- dimonkmv@yandex.ru
 ```
 Скрипт предварительно перенесён в /bin. Для быстрой проверки работоспособности отправка осуществлялась<br/> 
 каждую вторую минуту часа. Для соответствия заданию (отправка каждый час) строка должна иметь вид:<br/>
 ```shell
-0 * * * * parse_log /home/dem/vagrant/10_DZ/access-4560-644067.log | mutt -s report_"`date`" -- dimonkmv@yandex.ru
+0 * * * * parse_log /tmp/access-4560-644067.log | mutt -s report_"`date`" -- dimonkmv@yandex.ru
 ```
 4. Проверка работоспособности CRON<br/>
 ```shell
