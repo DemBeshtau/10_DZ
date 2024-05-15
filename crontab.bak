@@ -1,0 +1,4 @@
+SHELL=/bin/bash
+PATH=/bin:/sbin:/usr/bin:/usr/sbin
+
+0 * * * * parse_log /tmp/access-4560-644067.log | mutt -s report_"`date`" -- dimonkmv@yandex.ru
