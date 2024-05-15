@@ -229,5 +229,49 @@ PATH=/bin:/sbin:/usr/bin:/usr/sbin
 */2 * * * * parse_log /home/dem/vagrant/10_DZ/access-4560-644067.log | mutt -s report_"`date`" -- dimonkmv@yandex.ru
 ```
 Скрипт предварительно перенесён в /bin. Для быстрой проверки работоспособности отправка осуществлялась<br/> 
-каждую вторую минуту часа. Для соответствия заданию строка должна иметь вид:<br/>
-*/2 * * * * parse_log /home/dem/vagrant/10_DZ/access-4560-644067.log | mutt -s report_"`date`" -- dimonkmv@yandex.ru
+каждую вторую минуту часа. Для соответствия заданию (отправка каждый час) строка должна иметь вид:<br/>
+```shell
+0 * * * * parse_log /home/dem/vagrant/10_DZ/access-4560-644067.log | mutt -s report_"`date`" -- dimonkmv@yandex.ru
+```
+4. Проверка работоспособности CRON<br/>
+```shell
+calculate dem # cat /var/log/messages
+...
+May 15 14:12:00 calculate crond[2841]: (root) RELOAD (/var/spool/cron/crontabs/root)
+May 15 14:12:00 calculate crond[4655]: pam_ldap: missing file "/etc/ldap.conf"
+May 15 14:12:00 calculate crond[4655]: pam_unix(crond:session): session opened for user root(uid=0) by root(uid=0)
+May 15 14:12:00 calculate CROND[4657]: (root) CMD (parse_log /home/dem/vagrant/10_DZ/access-4560-644067.log | mutt -s report_"`date`" -- dimonkmv@>
+May 15 14:12:15 calculate mutt[4659]: DIGEST-MD5 common mech free
+May 15 14:12:15 calculate CROND[4655]: (root) CMDEND (parse_log /home/dem/vagrant/10_DZ/access-4560-644067.log | mutt -s report_"`date`" -- dimonk>
+May 15 14:12:15 calculate CROND[4655]: pam_unix(crond:session): session closed for user root
+May 15 14:14:00 calculate crond[14768]: pam_ldap: missing file "/etc/ldap.conf"
+May 15 14:14:00 calculate crond[14768]: pam_unix(crond:session): session opened for user root(uid=0) by root(uid=0)
+May 15 14:14:00 calculate CROND[14771]: (root) CMD (parse_log /home/dem/vagrant/10_DZ/access-4560-644067.log | mutt -s report_"`date`" -- dimonkmv>
+May 15 14:14:10 calculate mutt[14773]: DIGEST-MD5 common mech free
+May 15 14:14:10 calculate CROND[14768]: (root) CMDEND (parse_log /home/dem/vagrant/10_DZ/access-4560-644067.log | mutt -s report_"`date`" -- dimon>
+May 15 14:14:10 calculate CROND[14768]: pam_unix(crond:session): session closed for user root
+May 15 14:16:00 calculate crond[25044]: pam_ldap: missing file "/etc/ldap.conf"
+May 15 14:16:00 calculate crond[25044]: pam_unix(crond:session): session opened for user root(uid=0) by root(uid=0)
+May 15 14:16:00 calculate CROND[25047]: (root) CMD (parse_log /home/dem/vagrant/10_DZ/access-4560-644067.log | mutt -s report_"`date`" -- dimonkmv>
+May 15 14:16:10 calculate mutt[25049]: DIGEST-MD5 common mech free
+May 15 14:16:10 calculate CROND[25044]: (root) CMDEND (parse_log /home/dem/vagrant/10_DZ/access-4560-644067.log | mutt -s report_"`date`" -- dimon>
+May 15 14:16:10 calculate CROND[25044]: pam_unix(crond:session): session closed for user root
+May 15 14:18:00 calculate crond[2748]: pam_ldap: missing file "/etc/ldap.conf"
+May 15 14:18:00 calculate crond[2748]: pam_ldap: missing file "/etc/ldap.conf"
+May 15 14:18:00 calculate crond[2748]: pam_unix(crond:session): session opened for user root(uid=0) by root(uid=0)
+May 15 14:18:00 calculate CROND[2751]: (root) CMD (parse_log /home/dem/vagrant/10_DZ/access-4560-644067.log | mutt -s report_"`date`" -- dimonkmv@>
+May 15 14:18:09 calculate mutt[2753]: DIGEST-MD5 common mech free
+May 15 14:18:09 calculate CROND[2748]: (root) CMDEND (parse_log /home/dem/vagrant/10_DZ/access-4560-644067.log | mutt -s report_"`date`" -- dimonk>
+May 15 14:18:09 calculate CROND[2748]: pam_unix(crond:session): session closed for user root
+May 15 14:19:17 calculate crontab[13448]: (root) BEGIN EDIT (root)
+May 15 14:20:00 calculate crond[13452]: pam_ldap: missing file "/etc/ldap.conf"
+May 15 14:20:00 calculate crond[13452]: pam_unix(crond:session): session opened for user root(uid=0) by root(uid=0)
+May 15 14:20:00 calculate CROND[13455]: (root) CMD (parse_log /home/dem/vagrant/10_DZ/access-4560-644067.log | mutt -s report_"`date`" -- dimonkmv>
+May 15 14:20:10 calculate mutt[13457]: DIGEST-MD5 common mech free
+May 15 14:20:10 calculate CROND[13452]: (root) CMDEND (parse_log /home/dem/vagrant/10_DZ/access-4560-644067.log | mutt -s report_"`date`" -- dimon>
+May 15 14:20:10 calculate CROND[13452]: pam_unix(crond:session): session closed for user root
+...
+```
+![изображение](https://github.com/DemBeshtau/10_DZ/assets/149678567/7ca3490e-8be1-47e6-bf64-3553295b1768)
+![изображение](https://github.com/DemBeshtau/10_DZ/assets/149678567/f4df9374-93bc-415b-a4b2-bc55912f52c9)
+
